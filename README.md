@@ -32,9 +32,11 @@ python run_star_atari.py --seed 123 --data_dir_prefix [data_directory] --epochs 
 ```
 `[data_directory]` is where you place the Atari dataset.
 
-Variants (`model_type`):
+### Variants (`model_type`):
  - `'star'` (imitation)
  - `'star_rwd'` (offline RL)
+ - `'star_fusion'` (see Figure 4a in our paper)
+ - `'star_stack'` (see Figure 4b in our paper)
 
 
 ## Acknowledgement
