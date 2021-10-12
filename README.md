@@ -16,8 +16,8 @@ conda env create -f my_env.yml
 
 And [install Atari ROMs](https://github.com/openai/atari-py#roms).
 
-## Downloading datasets
-Please follow [Decision-Transformer](https://github.com/kzl/decision-transformer/blob/master/atari/readme-atari.md)
+## Datasets
+Please follow [this instruction](https://github.com/kzl/decision-transformer/blob/master/atari/readme-atari.md#downloading-datasets) for datasets.
 
 
 ## Example usage
