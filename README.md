@@ -6,6 +6,10 @@ We learn local State-Action-Reward representations (StAR-representations) to imp
 <img src="./figures/seqmodelrl2.png">
 <img src="./figures/mainfigure2.png">
 
+## Results
+
+<img src="./figures/results.png">
+
 ## Installation
 
 Dependencies can be installed by Conda:
