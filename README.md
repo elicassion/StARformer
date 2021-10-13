@@ -1,7 +1,7 @@
 
 # StARformer
-This repository contains the PyTorch implementation for our paper titled StARformer: Transformer with State-Action-Reward Representations.
-The pre-print is available at [Arxiv](https://arxiv.org/abs/2110.06206).
+This repository contains the PyTorch implementation for our paper titled [StARformer: Transformer with State-Action-Reward Representations](https://arxiv.org/abs/2110.06206).
+
 We learn local State-Action-Reward representations (StAR-representations) to improve (long) sequence modeling for reinforcement learning (and imitation learning).
 
 <img src="./figures/seqmodelrl2.png">
