@@ -39,6 +39,17 @@ python run_star_atari.py --seed 123 --data_dir_prefix [data_directory] --epochs 
  - `'star_fusion'` (see Figure 4a in our paper)
  - `'star_stack'` (see Figure 4b in our paper)
 
+## Citation
+```
+@misc{shang2021starformer,
+      title={StARformer: Transformer with State-Action-Reward Representations}, 
+      author={Jinghuan Shang and Michael S. Ryoo},
+      year={2021},
+      eprint={2110.06206},
+      archivePrefix={arXiv},
+      primaryClass={cs.LG}
+}
+```
 
 ## Acknowledgement
 
