@@ -213,7 +213,7 @@ def experiment(
             returns, lengths = [], []
             for _ in range(num_eval_episodes):
                 with torch.no_grad():
-                    if model_type == 'dt' or 'sat' in model_type:
+                    if model_type == 'dt' or 'star' in model_type:
                         ret, length = evaluate_episode_rtg(
                             env,
                             state_dim,
@@ -268,7 +268,7 @@ def experiment(
             attn_pdrop=variant['dropout'],
             model_type=variant['model_type'],
         )
-    elif 'sat' in model_type:
+    elif 'star' in model_type:
         mconf = StarformerConfig(act_dim, context_length=K, pos_drop=0.1, resid_drop=0.1,
                           N_head=variant['n_head'], D=variant['embed_dim'], local_N_head=4, local_D=16, 
                           model_type=args.model_type, max_timestep=1000, n_layer=variant['n_layer'], maxT = K, 
@@ -290,7 +290,7 @@ def experiment(
     model = model.to(device=device)
 
     warmup_steps = variant['warmup_steps']
-    if 'sat' in model_type:
+    if 'star' in model_type:
         optimizer = model.configure_optimizers(tconf)
     else:
         optimizer = torch.optim.AdamW(
@@ -303,7 +303,7 @@ def experiment(
         lambda steps: min((steps+1)/warmup_steps, 1)
     )
 
-    if 'dt' in model_type or 'sat' in model_type:
+    if 'dt' in model_type or 'star' in model_type:
         trainer = SequenceTrainer(
             model=model,
             optimizer=optimizer,
@@ -348,7 +348,7 @@ if __name__ == '__main__':
     parser.add_argument('--K', type=int, default=20)
     parser.add_argument('--pct_traj', type=float, default=1.)
     parser.add_argument('--batch_size', type=int, default=64)
-    parser.add_argument('--model_type', type=str, default='sat')  # dt for decision transformer, bc for behavior cloning
+    parser.add_argument('--model_type', type=str, default='star')  # dt for decision transformer, bc for behavior cloning
     parser.add_argument('--embed_dim', type=int, default=128)
     parser.add_argument('--n_layer', type=int, default=3)
     parser.add_argument('--n_head', type=int, default=1)
