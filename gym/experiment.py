@@ -17,7 +17,8 @@ from training.act_trainer import ActTrainer
 from training.seq_trainer import SequenceTrainer
 from models.starformer import Starformer, StarformerConfig
 
-from torch.utils.tensorboard import SummaryWriter
+# if using tensorboard
+# from torch.utils.tensorboard import SummaryWriter
 
 class TrainerConfig:
     # optimization parameters
@@ -53,6 +54,8 @@ def set_seed(seed):
     np.random.seed(seed)
     torch.manual_seed(seed)
     torch.cuda.manual_seed_all(seed)
+    torch.backends.cudnn.benchmark = False
+    torch.backends.cudnn.deterministic = True
 
 
 def experiment(
@@ -62,8 +65,7 @@ def experiment(
 ):
     set_seed(args.seed)
     timestr = datetime.now().strftime("%m-%d-%H-%M-%S")
-    setproctitle.setproctitle("[{}_{}_{}] [jishang]".format(args.model_type, args.env, args.dataset))
-    writer = SummaryWriter('runs/{}_{}'.format("_".join([str(x) for x in [args.model_type, args.env, args.dataset, args.K, args.seed]]), timestr))
+    # writer = SummaryWriter('runs/{}_{}'.format("_".join([str(x) for x in [args.model_type, args.env, args.dataset, args.K, args.seed]]), timestr))
     device = variant.get('device', 'cuda')
     log_to_wandb = variant.get('log_to_wandb', False)
 
@@ -208,7 +210,7 @@ def experiment(
         # print (r.size(), rtg.size())
         return s, a, r, target_a, mask, rtg, timesteps
 
-    def eval_episodes(target_rew, writer):
+    def eval_episodes(target_rew, writer=None):
         def fn(model):
             returns, lengths = [], []
             for _ in range(num_eval_episodes):
@@ -242,8 +244,9 @@ def experiment(
                         )
                 returns.append(ret)
                 lengths.append(length)
-            writer.add_scalar('eval_reward', np.mean(returns))
-            writer.add_scalar('eval_std', np.std(returns))
+            if writer is not None:
+                writer.add_scalar('eval_reward', np.mean(returns))
+                writer.add_scalar('eval_std', np.std(returns))
             return {
                 f'target_{target_rew}_return_mean': np.mean(returns),
                 f'target_{target_rew}_return_std': np.std(returns),
