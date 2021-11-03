@@ -1,3 +1,4 @@
+import os
 import gym
 import numpy as np
 import torch
@@ -51,6 +52,7 @@ def discount_cumsum(x, gamma):
 
 def set_seed(seed):
     random.seed(seed)
+    os.environ['PYTHONHASHSEED']=str(seed)
     np.random.seed(seed)
     torch.manual_seed(seed)
     torch.cuda.manual_seed_all(seed)
@@ -98,6 +100,8 @@ def experiment(
         scale = 10.
     else:
         raise NotImplementedError
+
+    env.seed(args.seed)
 
     if model_type == 'bc':
         env_targets = env_targets[:1]  # since BC ignores target, no need for different evaluations
