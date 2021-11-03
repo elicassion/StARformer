@@ -65,6 +65,7 @@ def experiment(
 ):
     set_seed(args.seed)
     timestr = datetime.now().strftime("%m-%d-%H-%M-%S")
+    writer = None
     # writer = SummaryWriter('runs/{}_{}'.format("_".join([str(x) for x in [args.model_type, args.env, args.dataset, args.K, args.seed]]), timestr))
     device = variant.get('device', 'cuda')
     log_to_wandb = variant.get('log_to_wandb', False)
