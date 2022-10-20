@@ -1,6 +1,6 @@
 
 # StARformer
-This repository contains the PyTorch implementation for our paper titled [StARformer: Transformer with State-Action-Reward Representations](https://arxiv.org/abs/2110.06206).
+This repository contains the PyTorch implementation for our paper titled [StARformer: Transformer with State-Action-Reward Representations](https://arxiv.org/abs/2110.06206) (ECCV 2022) and [StARformer: Transformer with State-Action-Reward Representations for Robot Learning](https://www3.cs.stonybrook.edu/~jishang/starformer/Starformer_TPAMI_final.pdf) (IEEE T-PAMI).
 
 We learn local State-Action-Reward representations (StAR-representations) to improve (long) sequence modeling for reinforcement learning (and imitation learning).
 
@@ -46,6 +46,7 @@ python run_star_atari.py --seed 123 --data_dir_prefix [data_directory] --epochs 
  - `'star_stack'` (see Figure 4b in our paper)
 
 ## Citation
+If you find our paper useful for your research, please consider cite 
 ```
 @misc{shang2021starformer,
       title={StARformer: Transformer with State-Action-Reward Representations}, 
@@ -55,6 +56,14 @@ python run_star_atari.py --seed 123 --data_dir_prefix [data_directory] --epochs 
       archivePrefix={arXiv},
       primaryClass={cs.LG}
 }
+
+@ARTICLE{shang2022starformerrobot,
+  author={Shang, Jinghuan and Li, Xiang and Kahatapitiya, Kumara and Lee, Yu-Cheol and Ryoo, Michael S.},
+  journal={IEEE Transactions on Pattern Analysis and Machine Intelligence}, 
+  title={StARformer: Transformer with State-Action-Reward Representations for Robot Learning}, 
+  year={2022},
+  pages={1-16},
+  doi={10.1109/TPAMI.2022.3204708}}
 ```
 
 ## Acknowledgement
