@@ -15,8 +15,9 @@ We learn local State-Action-Reward representations (StAR-representations) to imp
 
 Dependencies can be installed by Conda:
 
+For example to install env used for Atari (image input):
 ```
-conda env create -f conda_env.yml
+conda env create -f atari/conda_env.yml
 ```
 
 Then activate it by
@@ -26,6 +27,7 @@ conda activate star-atari
 ```
 
 And [install Atari ROMs](https://github.com/openai/atari-py#roms) for the environment.
+
 
 ## Datasets
 Please follow [this instruction](https://github.com/kzl/decision-transformer/blob/master/atari/readme-atari.md#downloading-datasets) for datasets.
