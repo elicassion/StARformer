@@ -49,7 +49,7 @@ Install [dmc2gym] by
 pip install git+https://github.com/denisyarats/dmc2gym.git
 ```
 
-Make sure you have [MuJuCo](https://github.com/deepmind/mujoco) installed. `mujuco-py` has already been installed in the conda env for you, but it's good to check whether they two are compatible.
+Make sure you have [MuJoCo](https://github.com/deepmind/mujoco) installed. `mujoco-py` has already been installed in the conda env for you, but it's good to check whether they two are compatible.
 
 
 ## Datasets (Atari)
