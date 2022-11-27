@@ -32,17 +32,22 @@ from starformer import Starformer, StarformerConfig
 
 parser = argparse.ArgumentParser()
 parser.add_argument('--seed', type=int, default=123)
+parser.add_argument('--game', type=str, default='Breakout')
+
 parser.add_argument('--seq_len', type=int, default=30)
-parser.add_argument('--epochs', type=int, default=15)
+
 parser.add_argument('--model_type', type=str, default='star')
 parser.add_argument('--num_steps', type=int, default=500000)
 parser.add_argument('--num_buffers', type=int, default=50)
-parser.add_argument('--game', type=str, default='Breakout')
+
 parser.add_argument('--batch_size', type=int, default=128)
 parser.add_argument('--patch_size', type=int, default=7)
-# 
+
 parser.add_argument('--trajectories_per_buffer', type=int, default=10, help='Number of trajectories to sample from each of the buffers.')
 parser.add_argument('--data_dir_prefix', type=str, default='./dqn_replay/')
+
+parser.add_argument('--epochs', type=int, default=15)
+parser.add_argument('--lr', type=float, default=6e-4)
 
 parser.add_argument('--save_model', action='store_true')
 parser.add_argument('--save_dir', type=str, default='trained_model')
@@ -407,7 +412,7 @@ mconf = StarformerConfig(train_dataset.vocab_size, img_size = img_size, patch_si
 model = Starformer(mconf)
 
 
-tconf = TrainerConfig(max_epochs=args.epochs, batch_size=args.batch_size, learning_rate=6e-4, vocab_size=train_dataset.vocab_size, img_size=img_size,
+tconf = TrainerConfig(max_epochs=args.epochs, batch_size=args.batch_size, learning_rate=args.lr, vocab_size=train_dataset.vocab_size, img_size=img_size,
                       lr_decay=True, warmup_tokens=512*20, final_tokens=10*len(train_dataset)*args.seq_len,
                       num_workers=8, seed=args.seed, model_type=args.model_type, game=args.game, maxT = args.seq_len,
                       args=args)

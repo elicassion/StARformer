@@ -65,8 +65,13 @@ class PatchEmb(nn.Module):
             Rearrange('b t c (h p1) (w p2) -> (b t) (h w) (p1 p2 c)', p1 = p1, p2 = p2),
             nn.Linear(p1*p2*c, iD)
         )
-        # +1 for mask
-        self.action_emb = nn.Embedding(config.vocab_size+1, iD)
+        
+        if 'continuous' in config.action_type:
+            self.action_emb = nn.Sequential(nn.Linear(config.vocab_size, iD), nn.Tanh())
+        else:
+            # +1 for mask
+            self.action_emb = nn.Embedding(config.vocab_size+1, iD)
+        
         if 'rwd' in config.model_type:
               self.reward_emb = nn.Sequential(nn.Linear(1, iD), nn.Tanh())
         self.spatial_emb = nn.Parameter(torch.zeros(1, h*w//p1//p2, iD))
@@ -212,7 +217,12 @@ class Starformer(nn.Module):
                 )
         
         self.ln_head = nn.LayerNorm(config.D)
-        self.head = nn.Linear(config.D, config.vocab_size)
+        if 'continuous' in config.action_type:
+            self.head = nn.Sequential(
+                    *([nn.Linear(config.D, config.vocab_size)] + [nn.Tanh()])
+                )
+        else:
+            self.head = nn.Linear(config.D, config.vocab_size)
         
         self.apply(self._init_weights)
         
@@ -274,7 +284,10 @@ class Starformer(nn.Module):
             nn.init.constant_(m.weight, 1.0)
             
     def get_loss(self, pred, target):
-        return F.cross_entropy(pred.reshape(-1, pred.size(-1)), target.reshape(-1), reduction='none')
+        if 'continuous' in self.config.action_type:
+            return F.mse_loss(pred, target, reduction='none')
+        else:
+            return F.cross_entropy(pred.reshape(-1, pred.size(-1)), target.reshape(-1), reduction='none')
 
     
     def forward(self, states, actions, targets=None, rewards=None):
@@ -324,6 +337,7 @@ class StarformerConfig:
     embd_pdrop = 0.1
     resid_pdrop = 0.1
     attn_pdrop = 0.1
+    action_type = "discrete"
 
     def __init__(self, vocab_size, **kwargs):
         self.vocab_size = vocab_size

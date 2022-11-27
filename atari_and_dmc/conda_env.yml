@@ -1,0 +1,37 @@
+name: starformer
+channels:
+  - conda-forge
+  - defaults
+  - pytorch
+dependencies:
+  - cudatoolkit=11.3.1=h2bc3f7f_2
+  - cudnn=8.2.1.32=h86fa8c9_0
+  - future
+  - hdf5
+  - pillow
+  - pip
+  - python=3.7.9=h7579374_0
+  - python_abi=3.7=2_cp37m
+  - pytorch=1.9.0=cuda112py37hcb91bf2_1
+  - pytorch-gpu=1.9.0=cuda112py37h0bbbad9_1
+  - setuptools
+  - timm=0.1.26=py_0
+  - torchvision=0.10.1=py37cuda112h1384e8b_0_cuda
+  - pip:
+    - atari-py==0.2.9
+    - dm-control==1.0.3
+    - einops
+    - gym==0.18.3
+    - h5py
+    - lxml
+    - matplotlib
+    - mujoco==2.2.0
+    - mujoco-py==2.1.2.14
+    - numpy
+    - opencv-python
+    - pandas
+    - scipy
+    - tensorboard
+    - tensorflow
+    - tensorflow-gpu
+    - tqdm
