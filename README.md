@@ -12,15 +12,15 @@ We learn local State-Action-Reward representations (StAR-representations) to imp
 <img src="./_doc/starvsdt_whitebg.png">
 
 ## Results
-<table>
-<tr>
-<td style="width: 50%"><img src="./_doc/orl2.png"></td>
-<td style="width: 50%"><img src="./_doc/il2.png"></td>
+<table style="padding: 0; border-spacing: 0;">
+<tr stype="padding: 0; border-spacing: 0;">
+<td style="padding: 0; border-spacing: 0; width: 50%"><img src="./_doc/orl2.png"></td>
+<td style="padding: 0; border-spacing: 0; width: 50%"><img src="./_doc/il2.png"></td>
 </tr>
 
-<tr>
-<td style="width: 50%"><img src="./_doc/seqlen_atari2.png"></td>
-<td style="width: 50%"><img src="./_doc/seqlen_dmc2.png"></td>
+<tr style="padding: 0; border-spacing: 0;">
+<td style="padding: 0; border-spacing: 0; width: 50%"><img src="./_doc/seqlen_atari2.png"></td>
+<td style="padding: 0; border-spacing: 0; width: 50%"><img src="./_doc/seqlen_dmc2.png"></td>
 </tr>
 </table>
 
