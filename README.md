@@ -12,15 +12,15 @@ We learn local State-Action-Reward representations (StAR-representations) to imp
 <img src="./_doc/starvsdt_whitebg.png">
 
 ## Results
-<p align="center">
+<div align="center">
     <img width=50% src="./_doc/orl2.png" align="left">
     <img width=50% src="./_doc/il2.png" align="right">
-</p>
+</div>
 
-<p align="center">
+<div align="center">
       <img width=50% src="./_doc/seqlen_atari2.png" align="left">
       <img width=50% src="./_doc/seqlen_dmc2.png" align="right">
-</p>
+</div>
 
 ## Installation
 Dependencies can be installed by Conda:
