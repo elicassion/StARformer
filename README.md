@@ -44,7 +44,7 @@ conda activate starformer
 To run on atari environment, please [install Atari ROMs](https://github.com/openai/atari-py#roms).
 
 - DMC: 
-Install [dmc2gym] by 
+Install [dmc2gym](https://github.com/denisyarats/dmc2gym) by 
 ```
 pip install git+https://github.com/denisyarats/dmc2gym.git
 ```
