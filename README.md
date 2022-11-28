@@ -13,7 +13,7 @@ We learn local State-Action-Reward representations (StAR-representations) to imp
 
 ## Results
 <table style="padding: 0; border-spacing: 0;">
-<tr stype="padding: 0; border-spacing: 0;">
+<tr style="padding: 0; border-spacing: 0;">
 <td style="padding: 0; border-spacing: 0; width: 50%"><img src="./_doc/orl2.png"></td>
 <td style="padding: 0; border-spacing: 0; width: 50%"><img src="./_doc/il2.png"></td>
 </tr>
