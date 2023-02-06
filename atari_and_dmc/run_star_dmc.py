@@ -407,7 +407,7 @@ writer = None
 
 img_size = (4, 84, 84)
 
-train_dataset = StateActionReturnDataset(obss, args.seq_len, actions, done_idxs, returns, img_size)
+train_dataset = StateActionReturnDatasetDMC(obss, args.seq_len, actions, done_idxs, returns, img_size)
 
 # initialize 
 mconf = StarformerConfig(train_dataset.vocab_size, img_size = img_size, patch_size = (args.patch_size, args.patch_size), pos_drop=0.1, resid_drop=0.1,
