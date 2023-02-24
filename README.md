@@ -1,6 +1,6 @@
 
 # StARformer
-This repository contains the PyTorch implementation for our paper titled [StARformer: Transformer with State-Action-Reward Representations](https://arxiv.org/abs/2110.06206) (ECCV 2022) and [StARformer: Transformer with State-Action-Reward Representations for Robot Learning](https://www3.cs.stonybrook.edu/~jishang/starformer/Starformer_TPAMI_final.pdf) (IEEE T-PAMI).
+This repository contains the PyTorch implementation for our paper titled [StARformer: Transformer with State-Action-Reward Representations](https://arxiv.org/abs/2110.06206) (ECCV 2022) and [StARformer: Transformer with State-Action-Reward Representations for Robot Learning](https://ieeexplore.ieee.org/document/9878209) (IEEE T-PAMI).
 
 ## Quick Links
 [[Installation]](#installation) [[Usage]](#example-usage) [[Citation]](#citation) [[Update Notes]](#update-notes)
