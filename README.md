@@ -71,11 +71,19 @@ python run_star_dmc.py --seed 123 --data_dir_prefix [data_directory] --epochs 10
 ```
 similarly, `[data_directory]` is where you place the DMC dataset. You can collect any replay buffer you desire and modify `StateActionReturnDatasetDMC` in `run_star_dmc.py` to make it compatible with your buffers.
 
-### Variants (`model_type`):
+### Variants (`--model_type`):
  - `'star'` (imitation)
  - `'star_rwd'` (offline RL)
  - `'star_fusion'` (see Figure 4a in our paper)
  - `'star_stack'` (see Figure 4b in our paper)
+
+### GPU Memory Usage / Training Time Reference
+With `num_steps=500000, batch_size=64, model_type=star_rwd`, on a single NVIDIA 3090Ti (24GB)
+ - `--seq_len=10` 9685MB   ~25min/epoch
+ - `--seq_len=20` 17033MB  ~50min/epoch
+ - `--seq_len=30` 24007MB  ~66min/epoch
+If you are out of memory, you can reduce `batch_size`
+
 
 ## Citation
 If you find our paper useful for your research, please consider cite 
@@ -102,6 +110,10 @@ If you find our paper useful for your research, please consider cite
 ```
 
 ## Update Notes
+* Apr 6, 2023:
+  - fix bug in `run_star_atari.py`
+  - fix conda env
+  - provide GPU usage reference
 * Nov 26, 2022: 
   - update code for dmc envrionments
   - clean conda env file

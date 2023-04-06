@@ -4,21 +4,20 @@ channels:
   - defaults
   - pytorch
 dependencies:
-  - cudatoolkit=11.3.1=h2bc3f7f_2
-  - cudnn=8.2.1.32=h86fa8c9_0
+  - cudatoolkit=11.3.1
   - future
   - hdf5
   - pillow
   - pip
-  - python=3.7.9=h7579374_0
-  - python_abi=3.7=2_cp37m
-  - pytorch=1.9.0=cuda112py37hcb91bf2_1
-  - pytorch-gpu=1.9.0=cuda112py37h0bbbad9_1
-  - setuptools
-  - timm=0.1.26=py_0
-  - torchvision=0.10.1=py37cuda112h1384e8b_0_cuda
+  - python=3.9
+  - pytorch=1.9.0
+  - setuptools=59.5.0
+  - timm=0.4.12
+  - torchvision=0.10.1
+  - torchaudio=0.9.0
   - pip:
     - atari-py==0.2.9
+    - blosc
     - dm-control==1.0.3
     - einops
     - gym==0.18.3
@@ -33,5 +32,5 @@ dependencies:
     - scipy
     - tensorboard
     - tensorflow
-    - tensorflow-gpu
     - tqdm
+    - git+https://github.com/google/dopamine.git@dabc84b1013b7ced981f189b2bb161e7fa94d31a

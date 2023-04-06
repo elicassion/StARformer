@@ -136,7 +136,7 @@ class Trainer:
                 with torch.set_grad_enabled(is_train):
                     if "rwd" in config.model_type:
                         act_logit, atts, loss = model(x, torch.cat([torch.ones(y.size(0), 1, 1, device=y.device, dtype=torch.long)*config.vocab_size, y[:, :-1]], dim=1), targets=y, 
-                                                        rewards=torch.cat([torch.zeros(r.size(0), 1, 1, device=r.device, dtype=torch.long), r[:, :-1]]))
+                                                        rewards=torch.cat([torch.zeros(r.size(0), 1, 1, device=r.device, dtype=torch.long), r[:, :-1]], dim=1))
                     else:
                         act_logit, atts, loss = model(x, torch.cat([torch.ones(y.size(0), 1, 1, device=y.device, dtype=torch.long)*config.vocab_size, y[:, :-1]], dim=1), targets=y)
                     
