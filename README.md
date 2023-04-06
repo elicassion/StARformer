@@ -83,6 +83,7 @@ With `num_steps=500000, batch_size=64, model_type=star_rwd`, on a single NVIDIA 
  - `--seq_len=10` 9685MB   ~25min/epoch
  - `--seq_len=20` 17033MB  ~50min/epoch
  - `--seq_len=30` 24007MB  ~66min/epoch
+
 If you are out of memory, you can reduce `batch_size`
 
 
