@@ -23,7 +23,7 @@ We learn local State-Action-Reward representations (StAR-representations) to imp
 <td style="padding: 0; border-spacing: 0; width: 50%"><img src="./_doc/seqlen_dmc2.png"></td>
 </tr>
 </table>
-
+For details and unormalized numbers, please check the supplementary at the end of the [paper](https://arxiv.org/abs/2110.06206) or [here](./_doc/StARformer_ECCV2022_Supp.pdf) for conveience.
 
 
 
