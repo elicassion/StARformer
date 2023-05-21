@@ -12,11 +12,12 @@ from PIL import Image
 import torch
 import torch.nn as nn
 from torch.nn import functional as F
-from torch.utils.data import Dataset
 import torch.optim as optim
 from torch.optim.lr_scheduler import LambdaLR
+from torch.utils.data import Dataset
 from torch.utils.data.dataloader import DataLoader
 from torch.utils.tensorboard import SummaryWriter
+from torchvision.transforms import Grayscale
 from tqdm import tqdm
 
 from einops import rearrange, repeat
@@ -239,7 +240,7 @@ class Trainer:
 
         for epoch in range(config.max_epochs):
             run_epoch('train', epoch_num=epoch)
-            eval_return, eval_std = self.get_returns(0)
+            eval_return, eval_std = self.get_returns(env, 0)
             if writer is not None:
                 writer.add_scalar('eval_return', eval_return, epoch)
                 writer.add_scalar('eval_std', eval_std, epoch)
@@ -255,7 +256,7 @@ class Trainer:
 
 
 
-    def get_returns(self, ret):
+    def get_returns(self, env, ret):
         self.model.train(False)
         # define action padding
         action_pad = np.zeros(self.config.vocab_size, dtype=np.float32)
