@@ -248,7 +248,7 @@ class Trainer:
                 if not os.path.exists(self.config.args.save_dir):
                     os.makedirs(self.config.args.save_dir)
                 raw_model = self.model.module if hasattr(self.model, "module") else self.model
-                fn = "_".join([str(x) for x in [self.config.args.model_type, self.config.args.game, 
+                fn = "_".join([str(x) for x in [self.config.args.model_type, self.config.args.domain, self.config.args.task, 
                     self.config.args.seq_len, self.config.args.seed, self.config.args.patch_size, epoch]])+".pth"
                 torch.save(raw_model.state_dict(), os.path.join(self.config.args.save_dir, fn))
 
@@ -397,17 +397,15 @@ class StateActionReturnDatasetDMC(Dataset):
                         
                               
 # run
-# returns is step-wise return or rtg, depending on the model type
-obss, actions, returns, done_idxs, _ = create_dataset(args.num_buffers, args.num_steps, args.game, args.data_dir_prefix, args.trajectories_per_buffer, args)
 writer = None
 
 # uncomment for tensorboard
 # timestr = datetime.now().strftime("%m-%d-%H-%M-%S")
-# writer = SummaryWriter('runs/{}_{}'.format("_".join([str(x) for x in [args.model_type, args.game, args.seq_len, args.seed, args.patch_size]]), timestr))
+# writer = SummaryWriter('runs/{}_{}'.format("_".join([str(x) for x in [args.model_type, args.domain, args.task, args.seq_len, args.seed, args.patch_size]]), timestr))
 
 img_size = (4, 84, 84)
 
-train_dataset = StateActionReturnDatasetDMC(obss, args.seq_len, actions, done_idxs, returns, img_size)
+train_dataset = StateActionReturnDatasetDMC(args)
 
 # initialize 
 mconf = StarformerConfig(train_dataset.vocab_size, img_size = img_size, patch_size = (args.patch_size, args.patch_size), pos_drop=0.1, resid_drop=0.1,
@@ -417,7 +415,7 @@ model = Starformer(mconf)
 
 tconf = TrainerConfig(max_epochs=args.epochs, batch_size=args.batch_size, learning_rate=args.lr, vocab_size=train_dataset.vocab_size, img_size=img_size,
                       lr_decay=True, warmup_tokens=512*20, final_tokens=10*len(train_dataset)*args.seq_len,
-                      num_workers=8, seed=args.seed, model_type=args.model_type, game=args.game, maxT = args.seq_len,
+                      num_workers=8, seed=args.seed, model_type=args.model_type, maxT = args.seq_len,
                       args=args)
 trainer = Trainer(model, train_dataset, None, tconf)
 
